@@ -307,3 +307,6 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %endif
 
 %changelog
+* Wed Apr 11 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.0-0.1
+- Initial package
+
