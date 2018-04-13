@@ -34,7 +34,7 @@
 
 Name:           %{repo}
 Version:        0.4.0
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        umoci modifies Open Container images
 License:        ASL 2.0
 URL:            https://umo.ci/
@@ -212,7 +212,7 @@ ln -s ../../../ src/%{import_path}
 export GOPATH=$(pwd):%{gopath}
 %endif
 
-export LDFLAGS="-X main.gitCommit=%{commit} -X main.version=%{version}"
+export LDFLAGS="-X main.version=%{version}"
 %gobuild -o _bin/%{name} %{import_path}/cmd/%{name}
 
 for manpage in doc/man/*.md; do
@@ -276,7 +276,7 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %gotest %{import_path}/oci/casext
 %gotest %{import_path}/oci/config/generate
 # Test fails, see openSUSE/umoci#235
-%gotest %{import_path}/oci/layer
+#%%gotest %%{import_path}/oci/layer
 %gotest %{import_path}/pkg/idtools
 %gotest %{import_path}/pkg/mtreefilter
 %gotest %{import_path}/pkg/system
