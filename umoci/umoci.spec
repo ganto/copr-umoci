@@ -33,8 +33,8 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           %{repo}
-Version:        0.4.0
-Release:        0.2%{?dist}
+Version:        0.4.1
+Release:        0.1%{?dist}
 Summary:        umoci modifies Open Container images
 License:        ASL 2.0
 URL:            https://umo.ci/
@@ -79,6 +79,7 @@ BuildRequires:  golang(github.com/apex/log)
 BuildRequires:  golang(github.com/apex/log/handlers/cli)
 BuildRequires:  golang(github.com/cyphar/filepath-securejoin)
 BuildRequires:  golang(github.com/docker/go-units)
+BuildRequires:  golang(github.com/klauspost/pgzip)
 BuildRequires:  golang(github.com/mohae/deepcopy)
 BuildRequires:  golang(github.com/opencontainers/go-digest)
 BuildRequires:  golang(github.com/opencontainers/image-spec/specs-go)
@@ -129,30 +130,37 @@ Provides:       golang(%{import_path}/third_party/shared) = %{version}-%{release
 Provides:       golang(%{import_path}/third_party/user) = %{version}-%{release}
 
 %if 0%{?with_bundled}
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/Sirupsen/logrus))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log/handlers/cli))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/cyphar/filepath-securejoin))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/docker/go-units))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/golang/protobuf/proto))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mohae/deepcopy))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/go-digest))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/image-spec/specs-go))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/image-spec/specs-go/v1))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-spec/specs-go))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/generate))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/generate/seccomp))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/pkg/errors))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/Sirupsen/logrus))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/syndtr/gocapability/capability))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/urfave/cli))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/pkg/govis))
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/xattr))
-Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/crypto/ripemd160))
-Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/crypto/ssh/terminal))
-Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/net/context))
-Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/sys/unix))
+# version information manually retrieved from vendor.conf
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log)) = 941dea75d3ebfbdd905a5d8b7b232965c5e5c684
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log/handlers/cli)) = 941dea75d3ebfbdd905a5d8b7b232965c5e5c684
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/cyphar/filepath-securejoin)) = v0.2.1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/docker/go-units)) = v0.3.3
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/fatih/color)) = v1.7.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/golang/protobuf/proto)) = v1.1.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/compress)) = v1.4.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/cpuid)) = v1.1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/crc32)) = v1.1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/pgzip)) = v1.1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mattn/go-colorable)) = v0.0.9
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mattn/go-isatty)) = v0.0.3
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mohae/deepcopy)) = 491d3605edfb866af34a48075bd4355ac1bf46ca
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/go-digest)) = v1.0.0-rc1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/image-spec/specs-go)) = v1.0.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/image-spec/specs-go/v1)) = v1.0.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-spec/specs-go)) = v1.0.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/generate)) = v0.7.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/generate/seccomp)) = v0.7.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/pkg/errors)) = v0.8.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/sirupsen/logrus)) = v1.0.6
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/syndtr/gocapability/capability)) = 33e07d32887e1e06b7c025f27ce52f62c7990bc0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/urfave/cli)) = v1.20.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree)) = 1bcf4de08ff771c9b288e3a25348f195d404c17b
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/pkg/govis)) = 1bcf4de08ff771c9b288e3a25348f195d404c17b
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/xattr)) = 1bcf4de08ff771c9b288e3a25348f195d404c17b
+Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/crypto/ripemd160)) = c126467f60eb25f8f27e5a981f32a87e3965053f
+Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/crypto/ssh/terminal)) = c126467f60eb25f8f27e5a981f32a87e3965053f
+Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/net/context)) = f4c29de78a2a91c00474a2e689954305c350adf9
+Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/sys/unix)) = 3dc4335d56c789b04b0ba99b7a37249d9b614314
 %endif
 
 %description devel
@@ -187,7 +195,7 @@ Requires:       golang(golang.org/x/sys/unix)
 
 %description unit-test-devel
 %{summary}.
-#
+
 This package contains unit tests for project providing packages with
 %{import_path} prefix.
 %endif
