@@ -315,6 +315,9 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %endif
 
 %changelog
+* Tue Sep 04 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.1-0.1
+- Update to 0.4.1
+
 * Fri Apr 13 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.0-0.2
 - Disable failing test (see openSUSE/umoci#235)
 - Don't set commit hash for stable release
