@@ -33,7 +33,7 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           %{repo}
-Version:        0.4.1
+Version:        0.4.2
 Release:        0.1%{?dist}
 Summary:        umoci modifies Open Container images
 License:        ASL 2.0
@@ -283,8 +283,7 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %gotest %{import_path}/oci/cas/dir
 %gotest %{import_path}/oci/casext
 %gotest %{import_path}/oci/config/generate
-# Test fails, see openSUSE/umoci#235
-#%%gotest %%{import_path}/oci/layer
+%gotest %{import_path}/oci/layer
 %gotest %{import_path}/pkg/idtools
 %gotest %{import_path}/pkg/mtreefilter
 %gotest %{import_path}/pkg/system
