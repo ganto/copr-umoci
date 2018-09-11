@@ -314,6 +314,9 @@ export GOPATH=%{buildroot}/%{gopath}:%{gopath}
 %endif
 
 %changelog
+* Tue Sep 11 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.2-0.1
+- Update to 0.4.2
+
 * Tue Sep 04 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.1-0.1
 - Update to 0.4.1
 
