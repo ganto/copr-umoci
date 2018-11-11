@@ -33,7 +33,7 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           %{repo}
-Version:        0.4.2
+Version:        0.4.3
 Release:        0.1%{?dist}
 Summary:        umoci modifies Open Container images
 License:        ASL 2.0
@@ -49,13 +49,14 @@ BuildRequires:  golang(github.com/apex/log)
 BuildRequires:  golang(github.com/apex/log/handlers/cli)
 BuildRequires:  golang(github.com/cyphar/filepath-securejoin)
 BuildRequires:  golang(github.com/docker/go-units)
+BuildRequires:  golang(github.com/golang/protobuf/proto)
 BuildRequires:  golang(github.com/opencontainers/go-digest)
 BuildRequires:  golang(github.com/opencontainers/image-spec/specs-go)
 BuildRequires:  golang(github.com/opencontainers/image-spec/specs-go/v1)
 BuildRequires:  golang(github.com/opencontainers/runtime-spec/specs-go)
 BuildRequires:  golang(github.com/opencontainers/runtime-tools/generate)
 BuildRequires:  golang(github.com/pkg/errors)
-BuildRequires:  golang(github.com/golang/protobuf/proto)
+BuildRequires:  golang(github.com/rootless-containers/proto/go-proto)
 BuildRequires:  golang(github.com/urfave/cli)
 BuildRequires:  golang(github.com/vbatts/go-mtree)
 BuildRequires:  golang(golang.org/x/net/context)
@@ -79,6 +80,7 @@ BuildRequires:  golang(github.com/apex/log)
 BuildRequires:  golang(github.com/apex/log/handlers/cli)
 BuildRequires:  golang(github.com/cyphar/filepath-securejoin)
 BuildRequires:  golang(github.com/docker/go-units)
+BuildRequires:  golang(github.com/golang/protobuf/proto)
 BuildRequires:  golang(github.com/klauspost/pgzip)
 BuildRequires:  golang(github.com/mohae/deepcopy)
 BuildRequires:  golang(github.com/opencontainers/go-digest)
@@ -87,7 +89,7 @@ BuildRequires:  golang(github.com/opencontainers/image-spec/specs-go/v1)
 BuildRequires:  golang(github.com/opencontainers/runtime-spec/specs-go)
 BuildRequires:  golang(github.com/opencontainers/runtime-tools/generate)
 BuildRequires:  golang(github.com/pkg/errors)
-BuildRequires:  golang(github.com/golang/protobuf/proto)
+BuildRequires:  golang(github.com/rootless-containers/proto/go-proto)
 BuildRequires:  golang(github.com/urfave/cli)
 BuildRequires:  golang(github.com/vbatts/go-mtree)
 BuildRequires:  golang(golang.org/x/net/context)
@@ -100,13 +102,14 @@ Requires:       golang(github.com/apex/log)
 Requires:       golang(github.com/apex/log/handlers/cli)
 Requires:       golang(github.com/cyphar/filepath-securejoin)
 Requires:       golang(github.com/docker/go-units)
+Requires:       golang(github.com/golang/protobuf/proto)
 Requires:       golang(github.com/opencontainers/go-digest)
 Requires:       golang(github.com/opencontainers/image-spec/specs-go)
 Requires:       golang(github.com/opencontainers/image-spec/specs-go/v1)
 Requires:       golang(github.com/opencontainers/runtime-spec/specs-go)
 Requires:       golang(github.com/opencontainers/runtime-tools/generate)
 Requires:       golang(github.com/pkg/errors)
-Requires:       golang(github.com/golang/protobuf/proto)
+Requires:       golang(github.com/rootless-containers/proto/go-proto)
 Requires:       golang(github.com/urfave/cli)
 Requires:       golang(github.com/vbatts/go-mtree)
 Requires:       golang(golang.org/x/net/context)
@@ -130,17 +133,20 @@ Provides:       golang(%{import_path}/third_party/shared) = %{version}-%{release
 Provides:       golang(%{import_path}/third_party/user) = %{version}-%{release}
 
 %if 0%{?with_bundled}
-# version information manually retrieved from vendor.conf
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log)) = 941dea75d3ebfbdd905a5d8b7b232965c5e5c684
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log/handlers/cli)) = 941dea75d3ebfbdd905a5d8b7b232965c5e5c684
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/cyphar/filepath-securejoin)) = v0.2.1
+# version information manually retrieved from modules.txt
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log)) = v1.1.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/apex/log/handlers/cli)) = v1.1.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/blang/semver)) = v3.5.1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/cyphar/filepath-securejoin)) = v0.2.2
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/docker/go-units)) = v0.3.3
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/fatih/color)) = v1.7.0
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/golang/protobuf/proto)) = v1.1.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/golang/protobuf/proto)) = v1.2.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/hashicorp/errwrap = 3d5d8f294aa03d8e98859feac328afbdf1ae0703
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/hashicorp/go-multierror = 3d5d8f294aa03d8e98859feac328afbdf1ae0703
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/compress)) = v1.4.0
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/cpuid)) = v1.1
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/crc32)) = v1.1
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/pgzip)) = v1.1
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/cpuid)) = ae7887de9fa5d2db4eaa8174a7eff2c1ac00f2da
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/crc32)) = cb6bfca970f6908083f26f39a79009d608efd5cd
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/pgzip)) = 0bf5dcad4ada2814c3c00f996a982270bb81a506
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mattn/go-colorable)) = v0.0.9
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mattn/go-isatty)) = v0.0.3
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/mohae/deepcopy)) = 491d3605edfb866af34a48075bd4355ac1bf46ca
@@ -148,19 +154,28 @@ Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontaine
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/image-spec/specs-go)) = v1.0.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/image-spec/specs-go/v1)) = v1.0.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-spec/specs-go)) = v1.0.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/filepath)) = v0.7.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/error)) = v0.7.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/generate)) = v0.7.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/generate/seccomp)) = v0.7.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/specerror)) = v0.7.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/opencontainers/runtime-tools/validate)) = v0.7.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/pkg/errors)) = v0.8.0
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/rootless-containers/proto/go-proto)) = v0.1.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/sirupsen/logrus)) = v1.0.6
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/syndtr/gocapability/capability)) = 33e07d32887e1e06b7c025f27ce52f62c7990bc0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/urfave/cli)) = v1.20.0
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree)) = 1bcf4de08ff771c9b288e3a25348f195d404c17b
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/pkg/govis)) = 1bcf4de08ff771c9b288e3a25348f195d404c17b
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/xattr)) = 1bcf4de08ff771c9b288e3a25348f195d404c17b
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree)) = v0.4.3
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/pkg/govis)) = v0.4.3
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/vbatts/go-mtree/xattr)) = v0.4.3
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/xeipuuv/gojsonpointer)) = 4e3ac2762d5f479393488629ee9370b50873b3a6
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/xeipuuv/gojsonreference)) = bd5ef7bd5415a7ac448318e64f11a24cd21e594b
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/xeipuuv/gojsonschema)) = b84684d0e066369f2a7a8a525f3080909ed4ea6b
 Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/crypto/ripemd160)) = c126467f60eb25f8f27e5a981f32a87e3965053f
 Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/crypto/ssh/terminal)) = c126467f60eb25f8f27e5a981f32a87e3965053f
 Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/net/context)) = f4c29de78a2a91c00474a2e689954305c350adf9
 Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/sys/unix)) = 3dc4335d56c789b04b0ba99b7a37249d9b614314
+Provides:       bundled(golang(%{import_path}/vendor/src/golang.org/x/sys/windows)) = 3dc4335d56c789b04b0ba99b7a37249d9b614314
 %endif
 
 %description devel
@@ -181,13 +196,14 @@ BuildRequires:  %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 Requires:       %{name}-devel = %{version}-%{release}
 
 %if ! 0%{?with_bundled}
+Requires:       golang(github.com/golang/protobuf/proto)
 Requires:       golang(github.com/mohae/deepcopy)
 Requires:       golang(github.com/opencontainers/go-digest)
 Requires:       golang(github.com/opencontainers/image-spec/specs-go)
 Requires:       golang(github.com/opencontainers/image-spec/specs-go/v1)
 Requires:       golang(github.com/opencontainers/runtime-spec/specs-go)
 Requires:       golang(github.com/pkg/errors)
-Requires:       golang(github.com/golang/protobuf/proto)
+Requires:       golang(github.com/rootless-containers/proto/go-proto)
 Requires:       golang(github.com/vbatts/go-mtree)
 Requires:       golang(golang.org/x/net/context)
 Requires:       golang(golang.org/x/sys/unix)
