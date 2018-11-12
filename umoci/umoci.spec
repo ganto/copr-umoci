@@ -332,6 +332,9 @@ export GO111MODULE=off
 %endif
 
 %changelog
+* Mon Nov 12 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.3-0.2
+- Set GO111MODULE=off to fix build on Fedora 29 and rawhide
+
 * Sun Nov 11 2018 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.3-0.1
 - Update to 0.4.3
 
