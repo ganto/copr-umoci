@@ -33,8 +33,8 @@
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           %{repo}
-Version:        0.4.3
-Release:        0.2%{?dist}
+Version:        0.4.4
+Release:        0.1%{?dist}
 Summary:        umoci modifies Open Container images
 License:        ASL 2.0
 URL:            https://umo.ci/
@@ -141,8 +141,8 @@ Provides:       bundled(golang(%{import_path}/vendor/src/github.com/cyphar/filep
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/docker/go-units)) = v0.3.3
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/fatih/color)) = v1.7.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/golang/protobuf/proto)) = v1.2.0
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/hashicorp/errwrap = 3d5d8f294aa03d8e98859feac328afbdf1ae0703
-Provides:       bundled(golang(%{import_path}/vendor/src/github.com/hashicorp/go-multierror = 3d5d8f294aa03d8e98859feac328afbdf1ae0703
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/hashicorp/errwrap = d6c0cd88035724dd42e0f335ae30161c20575ecc
+Provides:       bundled(golang(%{import_path}/vendor/src/github.com/hashicorp/go-multierror = d6c0cd88035724dd42e0f335ae30161c20575ecc
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/compress)) = v1.4.0
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/cpuid)) = ae7887de9fa5d2db4eaa8174a7eff2c1ac00f2da
 Provides:       bundled(golang(%{import_path}/vendor/src/github.com/klauspost/crc32)) = cb6bfca970f6908083f26f39a79009d608efd5cd
