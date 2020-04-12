@@ -29,11 +29,11 @@
 # https://github.com/openSUSE/umoci
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
-%global commit          a47bc3caf6bb1ade3a4453d58212239386d345c0
+%global commit          0522274791f1eecee27889f0dfb3b28b54731222
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           %{repo}
-Version:        0.4.4
+Version:        0.4.5
 Release:        0.1%{?dist}
 Summary:        umoci modifies Open Container images
 License:        ASL 2.0
