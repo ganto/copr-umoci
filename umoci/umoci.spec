@@ -332,6 +332,9 @@ export GO111MODULE=off
 %endif
 
 %changelog
+* Sun Apr 12 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.5-0.1
+- Update to 0.4.5.
+
 * Sun Feb 17 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.4-0.1
 - Update to 0.4.4
 
