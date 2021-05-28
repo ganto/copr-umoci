@@ -1,10 +1,16 @@
 %bcond_without check
 
+%if 0%{?centos} && 0%{?centos} < 9
+%global debug_package %{nil}
+%endif
+
 # https://github.com/opencontainers/umoci
 %global goipath        github.com/opencontainers/umoci
 Version:               0.4.6
 
+%if 0%{?fedora} || 0%{?centos} >= 8
 %gometa
+%endif
 
 %global common_description %{expand:
 umoci modifies Open Container images.}
@@ -20,6 +26,9 @@ License:               ASL 2.0
 URL:                   https://umo.ci/
 Source0:               https://github.com/opencontainers/%{name}/archive/v%{version}.tar.gz
 
+%if 0%{?centos} && 0%{?centos} < 8
+BuildRequires:         %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
+%endif
 BuildRequires:         go-md2man
 
 %description
@@ -31,10 +40,23 @@ alternative to oci-image-tools provided by the OCI.
 %gopkg
 
 %prep
+%if 0%{?centos} && 0%{?centos} < 9
+%setup -q -n %{name}-%{version}
+%else
 # Keep vendor code
 %goprep -k
+%endif
 
 %build
+%if 0%{?centos}
+%if 0%{?centos} < 8
+%define gobuild(o:) go build -tags="$BUILDTAGS rpm_crashtraceback" -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
+%endif
+%if 0%{?centos} < 9
+%define gobuilddir %{_builddir}/_build
+%endif
+%endif
+
 export LDFLAGS="${LDFLAGS} -X main.version=%{version}"
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
@@ -45,7 +67,9 @@ for manpage in doc/man/*.md; do
 done
 
 %install
+%if 0%{?fedora}
 %gopkginstall
+%endif
 install -m 0755 -vd                     %{buildroot}%{_bindir}
 install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
@@ -55,7 +79,12 @@ done
 
 %if %{with check}
 %check
+%if 0%{?centos} && 0%{?centos} < 9
+%global gotest go test
+%gotest ./...
+%else
 %gocheck
+%endif
 %endif
 
 %files
@@ -64,7 +93,9 @@ done
 %{_bindir}/*
 %{_mandir}/man1/umoci*
 
+%if 0%{?fedora}
 %gopkgfiles
+%endif
 
 %changelog
 * Sun Apr 12 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.5-0.1

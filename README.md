@@ -1,4 +1,4 @@
-# umoci RPM builds
+# umoci RPM spec file
 
 Contains build files to build [umoci](https://umo.ci/) RPMs in [COPR](https://copr.fedorainfracloud.org/coprs/ganto/umoci) using tito and git-annex.
 
