@@ -6,7 +6,7 @@
 
 # https://github.com/opencontainers/umoci
 %global goipath        github.com/opencontainers/umoci
-Version:               0.4.6
+Version:               0.4.7
 
 %if 0%{?fedora} || 0%{?centos} >= 8
 %gometa
@@ -18,7 +18,11 @@ umoci modifies Open Container images.}
 %global golicenses     COPYING
 %global godocs         CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md GOVERNANCE.md MAINTAINERS README.md
 
-Name:                  umoci
+%if 0%{?centos} && 0%{?centos} < 8
+Name:                  golang-github-opencontainers-umoci
+%else
+Name:                  %{goname}
+%endif
 Release:               0.1%{?dist}
 Summary:               umoci modifies Open Container images
 
@@ -30,6 +34,8 @@ Source0:               https://github.com/opencontainers/%{name}/archive/v%{vers
 BuildRequires:         %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
 %endif
 BuildRequires:         go-md2man
+Provides:              umoci = %{version}-%{release}
+Obsoletes:             umoci < %{version}-%{release}
 
 %description
 %{common_description}
@@ -41,7 +47,7 @@ alternative to oci-image-tools provided by the OCI.
 
 %prep
 %if 0%{?centos} && 0%{?centos} < 9
-%setup -q -n %{name}-%{version}
+%setup -q -n umoci-%{version}
 %else
 # Keep vendor code
 %goprep -k
@@ -57,7 +63,7 @@ alternative to oci-image-tools provided by the OCI.
 %endif
 %endif
 
-export LDFLAGS="${LDFLAGS} -X main.version=%{version}"
+export LDFLAGS="${LDFLAGS} -X %{goipath}.version=%{version}"
 for cmd in cmd/* ; do
   %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
 done

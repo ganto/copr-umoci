@@ -4,7 +4,7 @@ Contains build files to build [umoci](https://umo.ci/) RPMs in [COPR](https://co
 
 | Spec File                | Copr Build Status                  |
 | ------------------------ | ---------------------------------- | 
-| [umoci.spec](umoci/umoci.spec) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ganto/umoci/package/umoci/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ganto/umoci/package/umoci/) |
+| [golang-github-opencontainers-umoci.spec](golang-github-opencontainers-umoci/golang-github-opencontainers-umoci.spec) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ganto/umoci/package/golang-github-opencontainers-umoci/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ganto/umoci/package/golang-github-opencontainers-umoci/) |
 
 
 ### Author and license
