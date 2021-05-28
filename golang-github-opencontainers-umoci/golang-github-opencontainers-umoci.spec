@@ -104,6 +104,10 @@ done
 %endif
 
 %changelog
+* Sat May 29 2021 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.1
+- Update to 0.4.7.
+- Rename to match Golang packaging guidelines
+
 * Fri May 28 2021 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.6-0.1
 - Update to 0.4.6.
 - Complete spec file rewrite with new macros but keep minimal EPEL compatibility.
