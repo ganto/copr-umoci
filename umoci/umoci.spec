@@ -98,6 +98,10 @@ done
 %endif
 
 %changelog
+* Fri May 28 2021 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.6-0.1
+- Update to 0.4.6.
+- Complete spec file rewrite with new macros but keep minimal EPEL compatibility.
+
 * Sun Apr 12 2020 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.5-0.1
 - Update to 0.4.5.
 
