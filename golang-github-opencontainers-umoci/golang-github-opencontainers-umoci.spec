@@ -104,6 +104,9 @@ done
 %endif
 
 %changelog
+* Wed Jun 19 2024 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.2
+- Rebuild for EPEL 9 (reto.gantenbein@linuxmonk.ch)
+
 * Sat May 29 2021 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.1
 - Update to 0.4.7.
 - Rename to match Golang packaging guidelines
