@@ -23,7 +23,7 @@ Name:                  golang-github-opencontainers-umoci
 %else
 Name:                  %{goname}
 %endif
-Release:               0.1%{?dist}
+Release:               0.2%{?dist}
 Summary:               umoci modifies Open Container images
 
 License:               ASL 2.0
