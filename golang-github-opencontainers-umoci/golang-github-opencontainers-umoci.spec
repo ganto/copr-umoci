@@ -106,6 +106,9 @@ done
 %endif
 
 %changelog
+* Sun Nov 24 2024 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.3
+- Disable racy test
+
 * Wed Jun 19 2024 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.2
 - Rebuild for EPEL 9
 
