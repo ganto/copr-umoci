@@ -23,12 +23,13 @@ Name:                  golang-github-opencontainers-umoci
 %else
 Name:                  %{goname}
 %endif
-Release:               0.2%{?dist}
+Release:               0.3%{?dist}
 Summary:               umoci modifies Open Container images
 
 License:               ASL 2.0
 URL:                   https://umo.ci/
 Source0:               https://github.com/opencontainers/%{name}/archive/v%{version}.tar.gz
+Patch0:                v0.4.7-test-Remove-racy-TestInvalidDigest.patch
 
 %if 0%{?centos} && 0%{?centos} < 8
 BuildRequires:         %{?go_compiler:compiler(go-compiler)}%{!?go_compiler:golang}
@@ -47,10 +48,11 @@ alternative to oci-image-tools provided by the OCI.
 
 %prep
 %if 0%{?centos} && 0%{?centos} < 9
-%setup -q -n umoci-%{version}
+%autosetup -n umoci-%{version} -p1
 %else
 # Keep vendor code
 %goprep -k
+%patch 0 -p1
 %endif
 
 %build
@@ -105,7 +107,7 @@ done
 
 %changelog
 * Wed Jun 19 2024 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.2
-- Rebuild for EPEL 9 (reto.gantenbein@linuxmonk.ch)
+- Rebuild for EPEL 9
 
 * Sat May 29 2021 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.4.7-0.1
 - Update to 0.4.7.
